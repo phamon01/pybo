@@ -51,7 +51,9 @@ def detail(request, question_id):
     """
     pybo 내용 출력s
     """
-    #q=Question.objects.get(id = question_id)
+    page = request.GET.get('page', '1')  # 페이지
+
+    Question.objects.get(id = question_id)
     question = get_object_or_404(Question, pk=question_id)
     #page = request.GET.get('page', '1')  # 페이지
     answer_list = question.answer_set.all()
