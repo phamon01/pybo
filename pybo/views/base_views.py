@@ -3,10 +3,11 @@ from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404
 
 from ..models import Question, Answer
-
+import logging
+logger = logging.getLogger('pybo')
 
 def index(request):
-    3/0
+    loger.info("INFO 레벨로 출력")
     """
     pybo 목록 출력
     """
