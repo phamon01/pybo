@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404
 
-from ..models import Question
+from ..models import Question, Answer
 
 
 def index(request):
@@ -49,8 +49,14 @@ def index(request):
 
 def detail(request, question_id):
     """
-    pybo 내용 출력
+    pybo 내용 출력s
     """
+    #q=Question.objects.get(id = question_id)
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question': question}
+    #page = request.GET.get('page', '1')  # 페이지
+    answer_list = question.answer_set.all()
+    paginator = Paginator(answer_list, 2)
+    answer_obj = paginator.get_page(answer_list)
+    question = get_object_or_404(Question, pk=question_id)
+    context = {'question': question, 'answer_list': answer_obj}
     return render(request, 'pybo/question_detail.html', context)
