@@ -6,6 +6,7 @@ from ..models import Question, Answer
 
 
 def index(request):
+    3/0
     """
     pybo 목록 출력
     """
